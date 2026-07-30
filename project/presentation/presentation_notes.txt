@@ -1,0 +1,29 @@
+Security Log Analyzer Dashboard
+
+1. Introduction
+Good Morning Sir.
+My project name is Security Log Analyzer Dashboard.
+
+2. Objective
+The main objective of this project is to analyze security log files and detect suspicious activities.
+
+3. Features
+- Detect Failed Login Attempts
+- Detect Successful Logins
+- Detect Access Denied Events
+- Detect Suspicious IP Addresses
+- Generate Security Report
+- Create Bar Chart
+- Create Pie Chart
+
+4. Technologies Used
+- Python
+- Matplotlib
+
+5. Output
+The project reads the log file, analyzes the data, generates a report, and displays charts.
+
+6. Conclusion
+This project helps identify suspicious activities quickly and improves security monitoring.
+
+Thank You.

@@ -1,0 +1,6 @@
+===== SECURITY REPORT =====
+Total Failed Login Attempts: 8
+Total Successful Logins: 4
+Total Access Denied Events: 2
+ALERT: Multiple Failed Login Attempts Detected!
+ALERT: Unauthorized Access Detected!
