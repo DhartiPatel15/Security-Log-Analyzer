@@ -32,12 +32,13 @@ if uploaded_file is not None:
 
     st.header("Security Report")
 
-    report = """
-    Failed Login Attempts : 8
-    Successful Logins : 4
-    Access Denied Events : 2
+    report = f"""
+    Failed Login Attempts : {failed}
+    Successful Logins : {success}
+    Access Denied Events : {denied}
     Suspicious IP : 10.0.0.5
-    """
+    """ 
+    
     report_text = f"""
     Security Log Analyzer Report
 
@@ -61,7 +62,7 @@ if uploaded_file is not None:
     st.text(report)
     labels = ["Failed Login", "Successful Login", "Access Denied"]
     values = [failed, success, denied]
-    sizes = [8, 4, 2]
+    sizes = [failed, success, denied]
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Bar Chart")
