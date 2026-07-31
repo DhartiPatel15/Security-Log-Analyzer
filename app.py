@@ -60,6 +60,8 @@ if uploaded_file is not None:
     )
 
     st.text(report)
+
+    st.info("📊 This chart is generated dynamically from the uploaded log file.")
     labels = ["Failed Login", "Successful Login", "Access Denied"]
     values = [failed, success, denied]
     sizes = [failed, success, denied]
@@ -71,9 +73,11 @@ if uploaded_file is not None:
         ax.bar(labels, values, color=["red", "green", "orange"])
         ax.set_ylabel("Count")
         st.pyplot(fig)
+        st.caption("This chart is generated dynamically from the uploaded log file.")
     with col2:
        st.subheader("Pie Chart")
        fig2, ax2 = plt.subplots()
        ax2.pie(sizes, labels=labels, autopct="%1.1f%%")
        ax2.axis("equal")
        st.pyplot(fig2)
+       st.caption("This chart is generated dynamically from the uploaded log file.")
