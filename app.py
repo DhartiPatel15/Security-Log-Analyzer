@@ -1,104 +1,34 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-st.set_page_config(page_title="Security Log Analyzer", layout="wide")
 
-uploaded_file = st.file_uploader("Upload Log File", type=["txt", "log"])
+st.set_page_config(
+    page_title="Security Log Analyzer",
+    layout="wide"
+)
+
+st.title("🛡️ Security Log Analyzer Dashboard")
+
+uploaded_file = st.file_uploader(
+    "Upload Log File",
+    type=["txt", "log"]
+)
 
 if uploaded_file is not None:
+
     st.success("File uploaded successfully!")
-    st.write(uploaded_file.name)
+
     file_content = uploaded_file.read().decode("utf-8")
+
     with st.expander("📄 View Uploaded Log File"):
-      st.text(file_content)
+        st.text(file_content)
+
     failed = file_content.count("LOGIN_FAILED")
     success = file_content.count("LOGIN_SUCCESS")
     denied = file_content.count("ACCESS_DENIED")
-    total_login = failed + success
 
-    success_percentage = (success / total_login) * 100
-    failed_percentage = (failed / total_login) * 100
-    threat_score = failed * 20 + denied * 20
-
-    if threat_score > 100:
-       threat_score = 100 
-       
-       if threat_score >= 80:
-          risk = "🔴 HIGH"
-       elif threat_score >= 50:
-          risk = "🟡 MEDIUM"
-       else:
-          risk = "🟢 LOW"
-    st.title("🛡️ Security Log Analyzer Dashboard")
-
-    st.subheader("🤖 AI Threat Analysis")
-    st.metric("Threat Score", f"{threat_score}/100")
-    st.error(f"Risk Level: {risk}")
-
-    suspicious_ip = "Not Found"
-    for line in file_content.splitlines():
-      if "10.0.0.5" in line:
-        suspicious_ip = "10.0.0.5"
-        break
-    st.warning(f"⚠️ Suspicious IP Found: {suspicious_ip}")
-
-    st.info(f"✅ Login Success: {success_percentage:.1f}%")
-    st.info(f"❌ Login Failed: {failed_percentage:.1f}%")
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("Failed Login", failed)
-    col2.metric("Successful Login", success)
-    col3.metric("Access Denied", denied)
-    st.write("Welcome to the Security Log Analyzer Project")
-
-    st.header("Security Report")
-
-    report = f"""
-    Failed Login Attempts : {failed}
-    Successful Logins : {success}
-    Access Denied Events : {denied}
-    Suspicious IP :  {suspicious_ip}
-    """ 
-    
-    report_text = f"""
-    Security Log Analyzer Report
-
-    Failed Login: {failed}
-    Successful Login: {success}
-    Access Denied: {denied}
-
-    Login Success Percentage: {success_percentage:.1f}%
-    Login Failed Percentage: {failed_percentage:.1f}%
-
-    Suspicious IP:  {suspicious_ip}
-    """
-
-    st.download_button(
-    label="📥 Download Security Report",
-    data=report_text,
-    file_name="security_report.txt",
-    mime="text/plain"
-    )
-
-    st.text(report)
-
-    st.info("📊 This chart is generated dynamically from the uploaded log file.")
-    labels = ["Failed Login", "Successful Login", "Access Denied"]
-    values = [failed, success, denied]
-    sizes = [failed, success, denied]
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Bar Chart")
-
-        fig, ax = plt.subplots()
-        ax.bar(labels, values, color=["red", "green", "orange"])
-        ax.set_ylabel("Count")
-        st.pyplot(fig)
-        st.caption("This chart is generated dynamically from the uploaded log file.")
-    with col2:
-       st.subheader("Pie Chart")
-       fig2, ax2 = plt.subplots()
-       ax2.pie(sizes, labels=labels, autopct="%1.1f%%")
-       ax2.axis("equal")
-       st.pyplot(fig2)
-       st.caption("This chart is generated dynamically from the uploaded log file.")
+    col1.metric("❌ Failed Login", failed)
+    col2.metric("✅ Successful Login", success)
+    col3.metric("🚫 Access Denied", denied)
