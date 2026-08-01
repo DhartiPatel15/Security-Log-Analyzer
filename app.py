@@ -21,13 +21,14 @@ if uploaded_file is not None:
     threat_score = failed * 20 + denied * 20
 
     if threat_score > 100:
-       threat_score = 100
+       threat_score = 100 
+       
        if threat_score >= 80:
-        risk = "🔴 HIGH"
+          risk = "🔴 HIGH"
        elif threat_score >= 50:
-        risk = "🟡 MEDIUM"
+          risk = "🟡 MEDIUM"
        else:
-        risk = "🟢 LOW"
+          risk = "🟢 LOW"
     st.title("🛡️ Security Log Analyzer Dashboard")
 
     st.subheader("🤖 AI Threat Analysis")
