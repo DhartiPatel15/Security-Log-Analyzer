@@ -41,7 +41,7 @@ if uploaded_file is not None:
     Failed Login Attempts : {failed}
     Successful Logins : {success}
     Access Denied Events : {denied}
-    Suspicious IP : 10.0.0.5
+    Suspicious IP :  {suspicious_ip}
     """ 
     
     report_text = f"""
