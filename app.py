@@ -54,7 +54,7 @@ if uploaded_file is not None:
     Login Success Percentage: {success_percentage:.1f}%
     Login Failed Percentage: {failed_percentage:.1f}%
 
-    Suspicious IP: 10.0.0.5
+    Suspicious IP:  {suspicious_ip}
     """
 
     st.download_button(
