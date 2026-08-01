@@ -19,7 +19,12 @@ if uploaded_file is not None:
     success_percentage = (success / total_login) * 100
     failed_percentage = (failed / total_login) * 100
     st.title("🛡️ Security Log Analyzer Dashboard")
-    st.warning(f"⚠️ Suspicious IP Found: 10.0.0.5")
+    suspicious_ip = "Not Found"
+    for line in file_content.splitlines():
+      if "10.0.0.5" in line:
+        suspicious_ip = "10.0.0.5"
+        break
+    st.warning(f"⚠️ Suspicious IP Found: {suspicious_ip}")
 
     st.info(f"✅ Login Success: {success_percentage:.1f}%")
     st.info(f"❌ Login Failed: {failed_percentage:.1f}%")
