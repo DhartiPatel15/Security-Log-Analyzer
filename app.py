@@ -18,7 +18,22 @@ if uploaded_file is not None:
 
     success_percentage = (success / total_login) * 100
     failed_percentage = (failed / total_login) * 100
+    threat_score = failed * 20 + denied * 20
+
+    if threat_score > 100:
+       threat_score = 100
+       if threat_score >= 80:
+        risk = "🔴 HIGH"
+       elif threat_score >= 50:
+        risk = "🟡 MEDIUM"
+       else:
+        risk = "🟢 LOW"
     st.title("🛡️ Security Log Analyzer Dashboard")
+
+    st.subheader("🤖 AI Threat Analysis")
+    st.metric("Threat Score", f"{threat_score}/100")
+    st.error(f"Risk Level: {risk}")
+
     suspicious_ip = "Not Found"
     for line in file_content.splitlines():
       if "10.0.0.5" in line:
